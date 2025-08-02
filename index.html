@@ -7,55 +7,267 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
   <style>
-    /* Add your existing CSS here... */
-    
-    .services-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 2em;
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
-    .service-card {
-      background-color: white;
-      padding: 2em;
-      border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #333;
+      padding: 0.8em 1em;
       text-align: center;
-      border: 3px solid #ffb31c;
     }
 
-    .service-card i {
-      font-size: 2.5em;
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
       color: #ffb31c;
     }
 
-    .service-card h3 {
-      font-size: 1.5em;
-      margin-top: 1em;
-    }
-
-    .service-card p {
-      font-size: 1.1em;
-      margin-top: 1em;
-      color: #555;
-    }
-
-    .service-card .btn {
+    header {
       background-color: #ffb31c;
       color: white;
-      padding: 0.8em 1.5em;
-      font-size: 1em;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 1.5em;
-      display: inline-block;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
+      text-align: center;
+      padding: 3em 1em 2em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .service-card .btn:hover {
-      background-color: #e69900;
+    header img {
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+
+    header p {
+      font-size: 1.1em;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1em;
+      line-height: 1.6;
+    }
+
+    .promo-message {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 1em;
+      margin-top: 1em;
+      border-radius: 8px;
+      border: 1px solid #ffeeba;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .promo-message i {
+      margin-right: 10px;
+    }
+
+    /* Button */
+    .btn {
+      display: block;
+      background-color: #fff;
+      color: #333;
+      padding: 1em;
+      margin: 1em auto;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      max-width: 400px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border: 2px solid #ffb31c;
+    }
+
+    .btn i {
+      color: #ffb31c;
+      margin-right: 10px;
+    }
+
+    .btn:hover {
+      background-color: #ffb31c;
+      color: white;
+    }
+
+    .btn:hover i {
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2em 1em 4em;
+    }
+
+    h2 {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffb31c;
+      padding-bottom: 10px;
+    }
+
+    .service-image {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin: 20px auto 30px;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      border: 3px solid #ffb31c;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .contact-info p {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .contact-item,
+    .social-item .social-links {
+      font-size: 18px;
+      color: #ffb31c;
+      font-weight: 600;
+    }
+
+    .contact-item i,
+    .social-icons a.fab {
+      font-size: 20px;
+      color: #ffb31c;
+      background-color: transparent !important;
+      padding: 0;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      display: inline-block;
+    }
+
+    .contact-item i:hover,
+    .social-icons a.fab:hover {
+      text-shadow: 0 0 5px #ffb31c;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .social-icons a.fab:hover {
+      background-color: transparent;
+      color: #e69900;
+    }
+
+    .social-links:hover {
+      color: #e69900;
+      text-decoration: underline;
+    }
+
+    .contact-item {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+
+    .contact-item a {
+      color: #ffb31c;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #333, #222);
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    footer a {
+      color: #ffb31c;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 0.9em;
+      }
+
+      .contact-item, .social-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .social-links {
+        font-size: 14px;
+      }
+
+      nav a {
+        display: block;
+        margin: 0.5em 0;
+      }
     }
   </style>
 </head>
@@ -90,36 +302,33 @@
 
   <!-- Main Section -->
   <main id="services">
-    <h2>Our Services</h2>
+    <h2 class="section-title" id="services">Our Services</h2>
+    <img src="Payneil Services.jpg" alt="Bayad Center Services" class="service-image" />
 
-    <!-- Service Cards -->
-    <div class="services-container">
-      <div class="service-card">
-        <i class="fas fa-file-invoice"></i>
+<div class="grid">
+      <div class="card">
+        <i class="fas fa-receipt"></i>
         <h3>Bills Payment</h3>
         <p>Pay utilities, internet, and more—fast and secure.</p>
-        <a href="https://forms.gle/FpNnXT27X4dvFjRv9" class="btn" target="_blank">Start Payment</a>
+        <a href="https://forms.gle/FpNnXT27X4dvFjRv9" target="_blank">Start Payment</a>
       </div>
-
-      <div class="service-card">
+      <div class="card">
         <i class="fas fa-mobile-alt"></i>
         <h3>E-Load</h3>
         <p>Instant load for all major networks, anytime.</p>
-        <a href="https://forms.gle/m6X19rGQjQiTjnKLA" class="btn" target="_blank">Get Load</a>
+        <a href="https://forms.gle/m6X19rGQjQiTjnKLA" target="_blank">Get Load</a>
       </div>
-
-      <div class="service-card">
+      <div class="card">
         <i class="fas fa-plane"></i>
         <h3>Airline Booking</h3>
         <p>Book local and international flights with ease.</p>
-        <a href="https://forms.gle/8gdEWCDEPo92aE82A" class="btn" target="_blank">Book Now</a>
+        <a href="https://forms.gle/8gdEWCDEPo92aE82A" target="_blank">Book Now</a>
       </div>
-
-      <div class="service-card">
+      <div class="card">
         <i class="fas fa-hotel"></i>
         <h3>Hotel Accommodation</h3>
         <p>Find and book comfortable stays at great rates.</p>
-        <a href="https://forms.gle/iNXUrkZykYkkqzkY6" class="btn" target="_blank">Reserve</a>
+        <a href="https://forms.gle/iNXUrkZykYkkqzkY6" target="_blank">Reserve</a>
       </div>
     </div>
 
